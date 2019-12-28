@@ -8,6 +8,7 @@ import tornado.gen
 
 import os
 import random
+import webbrowser
 
 # Require a username and password in order to use the web interface. See ReadMe.org for details.
 #enable_authentication = False
@@ -144,9 +145,7 @@ class AuthedStaticHandler(tornado.web.StaticFileHandler):
 class HomeHandler(AuthHandler):
     @tornado.web.authenticated
     def get(self):
-        # Replace with your desired behavior, e.g. 
-        # self.render('webInterface/index.html')
-        self.write('You are logged in!')
+        self.render('webInterface/index.html')
 
 class ExampleWebSocket(tornado.websocket.WebSocketHandler):
     connections = set()
@@ -190,7 +189,7 @@ def make_app():
         # (r'/ExampleWebSocket', ExampleWebSocket),
 
         # Static files
-        # (r'/webInterface/(.*)', AuthedStaticHandler, {'path' : 'webInterface'}),
+        (r'/webInterface/(.*)', AuthedStaticHandler, {'path' : 'webInterface'}),
 
         # Files served regardless of whether the user is authenticated. Only login page resources
         # should be in this folder, because anyone can see them
@@ -222,6 +221,10 @@ if __name__ == '__main__':
         print('\n\tWARNING: Do NOT run this server on the internet (e.g. port-forwarded)'
               ' nor when\n\t connected to an insecure LAN! It is not protected against malicious use.\n')
         app.listen(port)
-        
+
+    browseUrl  ="{}://localhost:{}".format('https' if useSSL else 'http', port)
+    print("Attempting to launch user's default browser to {}".format(browseUrl))
+    webbrowser.open(browseUrl)
+
     ioLoop = tornado.ioloop.IOLoop.current()
     ioLoop.start()

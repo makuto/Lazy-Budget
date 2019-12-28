@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<title>Lazy Budget</title>
+
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- For mobile: set scale to native -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" type="text/css" href="/webInterfaceNoAuth/index.css">
+	</head>
+	<body>
+		<h1>Lazy Budget</h1>
+
+		<script type="text/javascript" src="/webInterface/TransactionData.js"></script>
+		
+		<!--
+			 Visualization
+		-->
+		<!-- Note that this size will be changed automatically by Chart.js -->
+		<canvas id="myChart" width="400" height="400"></canvas><br />
+		<!-- Moment: Required by Chart for time support; https://momentjs.com/ -->
+		<script type="text/javascript" src="/webInterface/Moment.js"></script>
+		<!-- From https://github.com/chartjs/Chart.js -->
+		<script type="text/javascript" src="/webInterface/Chart.js"></script>
+		<!-- Code using Chart.js for Lazy Budget -->
+		<script type="text/javascript" src="/webInterface/Visualization.js"></script>
+
+		<!-- File upload -->
+		<input type="file" id="filesUpload" name="files[]" multiple />
+		<output id="output"></output>
+		<script type="text/javascript" src="/webInterface/Files.js"></script>
+		<!-- Raw data -->
+		<table id="transactionTable">
+		</table>
+		
+		<nav>
+			<a href="/webInterface/Upload.html">Upload Transactions</a><br />
+			<!-- <a href="/settings">Settings</a><br /><br /> -->
+
+			<!-- Less frequent options example -->
+			<!-- <a class="small" href="/unsupportedSubmissions">Content which failed to download</a><br />
+				 <br />
+				 <a class="small" href="/logout">Sign Out</a><br /> -->
+		</nav>
+		
+		<footer>
+			<a href="https://github.com/makuto/Lazy-Budget">See the code</a>
+			<a href="mailto:macoy@macoy.me">Give feedback</a>
+		</footer>
+	</body>
+</html>

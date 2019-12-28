@@ -94,7 +94,8 @@ tr,
 td,
 input,
 textarea,
-button {
+button,
+output {
     color: #95aec7;
 }
 
